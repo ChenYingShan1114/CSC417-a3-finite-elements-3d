@@ -18,8 +18,6 @@ bool simulating = true;
 bool simulation_callback() {
 
     while(simulating) {
-    // while (t < 1 * dt) {
-    // for (int i = 0; i < 5; i++) {
         simulate(q, qdot, dt, t);
         t += dt;
     }

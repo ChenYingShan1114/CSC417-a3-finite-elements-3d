@@ -11,11 +11,7 @@ void dV_spring_particle_particle_dq(Eigen::Ref<Eigen::Vector6d> f, Eigen::Ref<co
 
     double dist = (q1 - q0).norm();
     double force = -stiffness * (dist - l0) / dist;
-    // std::cout << force * (q1(0) - q0(0)) << " " << force * (q1(1) - q0(1)) << " " << force * (q1(2) - q0(2)) << " " << force * (q0(0) - q1(0)) << " " << force * (q0(1) - q1(1)) << " " << force * (q0(2) - q1(2)) << std::endl;
-
     f << q1 - q0, q0 - q1;
-    f = force * f;
-    // std::cout << f<< std::endl;
-    
+    f = force * f;    
     
 }

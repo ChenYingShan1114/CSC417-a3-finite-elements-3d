@@ -19,6 +19,4 @@
             }
         }
     }
-    // std::cout << M.size() << " " << qdot.size() << " " << element << " " << density << " " << volume << std::endl;
-    // std::cout << M << std::endl;
  }

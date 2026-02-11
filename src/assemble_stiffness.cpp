@@ -18,13 +18,10 @@ void assemble_stiffness(Eigen::SparseMatrixd &K, Eigen::Ref<const Eigen::VectorX
         for (int i = 0; i < v0.size(); i++) {
             Eigen::Matrix1212d H = Eigen::Matrix1212d::Zero();
             d2V_linear_tetrahedron_dq2(H, q, V, T.row(i), v0(i), C, D);
-            // std::cout << T.row(i) << std::endl;
 
             for (int j = 0; j < T.row(i).size(); j++) {
                 for (int k = 0; k < T.row(i).size(); k++) {
-                    // std::cout << j << " " << k << " " << T(i, j) << " " << T(i, k) << std::endl;
                     int i1 = T(i, j), i2 = T(i, k);
-                    // std::cout << i1 << " " << i2 << " " << j << " " << k << std::endl;
 
                     K.coeffRef(3 * i1    , 3 * i2    ) -= H(3 * j    , 3 * k    );
                     K.coeffRef(3 * i1    , 3 * i2 + 1) -= H(3 * j    , 3 * k + 1);
@@ -35,42 +32,7 @@ void assemble_stiffness(Eigen::SparseMatrixd &K, Eigen::Ref<const Eigen::VectorX
                     K.coeffRef(3 * i1 + 2, 3 * i2    ) -= H(3 * j + 2, 3 * k    );
                     K.coeffRef(3 * i1 + 2, 3 * i2 + 1) -= H(3 * j + 2, 3 * k + 1);
                     K.coeffRef(3 * i1 + 2, 3 * i2 + 2) -= H(3 * j + 2, 3 * k + 2);
-                    // std::cout << H(3 * j    , 3 * k    ) << std::endl;
-                    // for (int i1 = 0; i1 < 3; i1++) {
-                    //     for (int i2 = 0; i2 < 3; i2++) {
-                    //         K.coeffRef(3 * T(i, j) + i1, 3 * T(i, k) + i2) -= H(3 * j + i1, 3 * k + i2);
-                    //     }
-                    // // }
-                    // if (i1 == 222) {
-                    //     std::cout << "i1" << "\n";
-
-                    //     // std::cout << K.coeffRef(3 * i1    , 3 * i2    ) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1    , 3 * i2 + 1) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1    , 3 * i2 + 2) << " ";
-                    //     std::cout << K.coeffRef(3 * i1 + 1, 3 * i2    ) << " ";
-                    //     std::cout << K.coeffRef(3 * i1 + 1, 3 * i2 + 1) << " ";
-                    //     std::cout << K.coeffRef(3 * i1 + 1, 3 * i2 + 2) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1 + 2, 3 * i2    ) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1 + 2, 3 * i2 + 1) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1 + 2, 3 * i2 + 2) << " ";
-                    //     std::cout << "\n";
-                    // }
-                    // if (i2 == 222) {
-                    //     std::cout << "i2" << "\n";
-
-                    //     // std::cout << K.coeffRef(3 * i1    , 3 * i2    ) << " ";
-                    //     std::cout << K.coeffRef(3 * i1    , 3 * i2 + 1) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1    , 3 * i2 + 2) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1 + 1, 3 * i2    ) << " ";
-                    //     std::cout << K.coeffRef(3 * i1 + 1, 3 * i2 + 1) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1 + 1, 3 * i2 + 2) << " ";
-                    //     // std::cout << K.coeffRef(3 * i1 + 2, 3 * i2    ) << " ";
-                    //     std::cout << K.coeffRef(3 * i1 + 2, 3 * i2 + 1) << " ";
-                    //     std::cout << K.coeffRef(3 * i1 + 2, 3 * i2 + 2) << " ";
-                    //     std::cout << "\n";
-                    // }
                 }
             }
-        }
-        
+        }    
     };

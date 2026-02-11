@@ -20,27 +20,10 @@ void assemble_forces(Eigen::VectorXd &f, Eigen::Ref<const Eigen::VectorXd> q, Ei
         for (int i = 0; i < T.rows(); i++) {
             Eigen::Vector12d dV = Eigen::Vector12d::Zero();
             dV_linear_tetrahedron_dq(dV, q, V, T.row(i), v0(i), C, D);
-            // std::cout << dV << std::endl;
-            // std::cout << T.row(i) << std::endl;
             for (int j = 0; j < T.row(i).size(); j++) {
-                // std::cout << i << " " << j << " " << T(i, j) << std::endl;
-                //sum up!!
-                // std::cout << 3 * T(i, j) << " " << 3 * T(i, j) + 1 << " " << 3 * T(i, j) + 2 << std::endl;
-
-                // std::cout << 3 * j << " " << 3 * j + 1 << " " << 3 * j + 2 << std::endl;
-
                 f(3 * T(i, j)    ) -= dV(3 * j    );
                 f(3 * T(i, j) + 1) -= dV(3 * j + 1);
                 f(3 * T(i, j) + 2) -= dV(3 * j + 2);
-                // std::cout << "add " << dV(3 * j    ) << " " << dV(3 * j + 1) << " " << dV(3 * j + 2) << std::endl;
             }
-            // std::cout << f.transpose() << std::endl;
-
         }
-        // std::cout << f.transpose() << std::endl;
-        // for (int i = 0; i < f.size(); i++) {
-        //     if (f(i) > 1e-10) {
-        //         std::cout << i << " " << f(i) << std::endl;
-        //     }
-        // }
     };

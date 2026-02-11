@@ -291,7 +291,7 @@ inline void simulate(Eigen::VectorXd &q, Eigen::VectorXd &qdot, double dt, doubl
     for(unsigned int ei=0; ei<T.rows(); ++ei) {
         T_linear_tetrahedron(T_ele, P.transpose()*qdot, T.row(ei), density, v0(ei));
         KE += T_ele;
-        // std::cout << ei << std::endl;
+
         V_linear_tetrahedron(V_ele, P.transpose()*q+x0, V, T.row(ei), v0(ei), C, D);
         PE += V_ele;
     }
@@ -332,7 +332,7 @@ inline void assignment_setup(int argc, char **argv, Eigen::VectorXd &q, Eigen::V
             igl::readOBJ("../data/armadillo.obj", V_skin, F_skin);
         
             bunny = false;
-            fully_implicit = false;
+            fully_implicit = true;
         }
     }
     
