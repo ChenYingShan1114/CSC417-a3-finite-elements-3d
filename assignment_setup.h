@@ -403,8 +403,8 @@ inline void assignment_setup(int argc, char **argv, Eigen::VectorXd &q, Eigen::V
     Visualize::viewer_menu().callback_draw_custom_window = [&]()
     {
         // Define next window position + size
-        ImGui::SetNextWindowPos(ImVec2(180.f * Visualize::viewer_menu().menu_scaling(), 10), ImGuiSetCond_FirstUseEver);
-        ImGui::SetNextWindowSize(ImVec2(800, 500), ImGuiSetCond_FirstUseEver);
+        ImGui::SetNextWindowPos(ImVec2(1200.f * Visualize::viewer_menu().menu_scaling(), 10), ImGuiSetCond_FirstUseEver);
+        ImGui::SetNextWindowSize(ImVec2(400, 500), ImGuiSetCond_FirstUseEver);
         ImGui::Begin(
             "Energy Plot", nullptr,
             ImGuiWindowFlags_NoSavedSettings
